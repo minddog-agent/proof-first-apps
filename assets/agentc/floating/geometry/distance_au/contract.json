@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "name": "distance_au",
+  "format": "binary64",
+  "rounding": "RNE",
+  "parameters": [
+    "ex",
+    "ey",
+    "ez",
+    "mx",
+    "my",
+    "mz"
+  ],
+  "requires": [
+    [
+      "finite",
+      "ex"
+    ],
+    [
+      "finite",
+      "ey"
+    ],
+    [
+      "finite",
+      "ez"
+    ],
+    [
+      "finite",
+      "mx"
+    ],
+    [
+      "finite",
+      "my"
+    ],
+    [
+      "finite",
+      "mz"
+    ]
+  ],
+  "ensures": [
+    [
+      "same",
+      "result",
+      [
+        "sqrt",
+        [
+          "+",
+          [
+            "+",
+            [
+              "*",
+              [
+                "-",
+                "mx",
+                "ex"
+              ],
+              [
+                "-",
+                "mx",
+                "ex"
+              ]
+            ],
+            [
+              "*",
+              [
+                "-",
+                "my",
+                "ey"
+              ],
+              [
+                "-",
+                "my",
+                "ey"
+              ]
+            ]
+          ],
+          [
+            "*",
+            [
+              "-",
+              "mz",
+              "ez"
+            ],
+            [
+              "-",
+              "mz",
+              "ez"
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+}

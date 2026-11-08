@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "name": "clamp",
+  "lean_version": "4.19.0",
+  "spec_sha256": "eaeb9b6ca8d7756acfb48f840e7059dc0895a5e9d0f6bf519f0c11d3e2947bde",
+  "exports": [
+    {
+      "name": "Candidate.run",
+      "type": "Int \u2192 Int"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "correct",
+      "proof": "Candidate.correct",
+      "type": "ClampSpec.Correct Candidate.run",
+      "required": true
+    }
+  ],
+  "notes": [
+    "All integer inputs; clamp to 0 through 100."
+  ]
+}

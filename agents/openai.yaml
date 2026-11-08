@@ -1,0 +1,14 @@
+interface:
+  display_name: Proof-First Apps
+  short_description: Prove app cores and audit remaining proof coverage
+  default_prompt: Use $proof-first-apps to specify and verify the core before integration,
+    use the verified artifact in the app, and audit proof coverage and assumptions.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

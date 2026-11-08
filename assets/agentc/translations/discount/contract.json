@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "name": "discounted_price",
+  "parameters": [
+    "price",
+    "discount"
+  ],
+  "ensures": [
+    [
+      ">=",
+      "result",
+      0
+    ],
+    [
+      "implies",
+      [
+        ">=",
+        "price",
+        "discount"
+      ],
+      [
+        "==",
+        "result",
+        [
+          "-",
+          "price",
+          "discount"
+        ]
+      ]
+    ],
+    [
+      "implies",
+      [
+        "<",
+        "price",
+        "discount"
+      ],
+      [
+        "==",
+        "result",
+        0
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "name": "calculator",
+  "lean_version": "4.19.0",
+  "spec_sha256": "32fed4c9d0d21ac77dcd3b15080932811d7c7a69f06f707ea357c066beca1a45",
+  "exports": [
+    {
+      "name": "Candidate.calculate",
+      "type": "String \u2192 Calculator.Result"
+    },
+    {
+      "name": "Candidate.evaluate",
+      "type": "Calculator.Expression \u2192 Calculator.Result"
+    },
+    {
+      "name": "Candidate.parse",
+      "type": "String \u2192 Except Calculator.CalcError Calculator.Expression"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "invalid_characters",
+      "proof": "Candidate.invalid_rejected",
+      "type": "Calculator.InvalidInputContract Candidate.calculate",
+      "required": true
+    },
+    {
+      "id": "arithmetic",
+      "proof": "Candidate.arithmetic_correct",
+      "type": "Calculator.ArithmeticContract Candidate.evaluate",
+      "required": true
+    },
+    {
+      "id": "evaluation_bridge",
+      "proof": "Candidate.parsed_expression_evaluated",
+      "type": "\u2200 (s : String) (e : Calculator.Expression), Calculator.validCharacters s = true \u2192 Candidate.parse s = .ok e \u2192 Candidate.calculate s = Candidate.evaluate e",
+      "required": true
+    },
+    {
+      "id": "addition_example",
+      "proof": "Candidate.example_symbol",
+      "type": "Candidate.calculate \"12+3\" = .ok 15",
+      "required": true
+    },
+    {
+      "id": "division_zero_example",
+      "proof": "Candidate.example_ascii_zero",
+      "type": "Candidate.calculate \"12/0\" = .error .divisionByZero",
+      "required": true
+    },
+    {
+      "id": "invalid_example",
+      "proof": "Candidate.example_forbidden",
+      "type": "Candidate.calculate \"12@3\" = .error .invalidCharacters",
+      "required": true
+    },
+    {
+      "id": "parser_soundness",
+      "proof": "Candidate.parser_soundness",
+      "type": "\u2200 (s : String) (e : Calculator.Expression), Candidate.parse s = .ok e \u2192 Calculator.Spells s e",
+      "required": true
+    },
+    {
+      "id": "parser_completeness",
+      "proof": "Candidate.parser_completeness",
+      "type": "\u2200 (s : String) (e : Calculator.Expression), Calculator.Spells s e \u2192 Candidate.parse s = .ok e",
+      "required": true
+    }
+  ],
+  "notes": [
+    "ASCII letters/digits and + - * /; two nonnegative operands; integer division; no spaces.",
+    "Parser soundness and completeness are required. The included calculator intentionally has no proofs of these obligations and must report incomplete."
+  ]
+}

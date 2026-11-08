@@ -1,0 +1,16 @@
+{
+  "specification_sha256": "36fa0883fd8f881799afd1478cc311b55bd8eb03835beebcdb3016e4580d630d",
+  "scope": "atomic sequential state machine with versioned commits; database atomicity remains an external obligation",
+  "requirements": [
+    "inventory partition and no oversell",
+    "owner and hold-token authorization",
+    "strict expiry deadline",
+    "exact expiration releases pending only",
+    "stale version no-op",
+    "duplicate and conflicting ID no-op",
+    "competing buyers same-version single winner",
+    "retry idempotence"
+  ],
+  "previous_specification_sha256": "11447eb9189e6776a8b96bdea5bc8f7d9d82ac43cace35be406355511dfc7c66",
+  "revision_reason": "Promote retry and competing-buyer witnesses into explicit result postconditions so the specification pin preserves these claims."
+}

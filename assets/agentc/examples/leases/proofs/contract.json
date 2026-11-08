@@ -1,0 +1,10 @@
+{
+  "specification_sha256": "d1d8e772daf6f2d4c3d5507797c2379f4ec4ac2e48388e49a522b6e1fd108691",
+  "requirements": [
+    "Single locker; positive integer holder identities; no authentication.",
+    "Acquire succeeds iff empty, generating token greater than all previously issued tokens.",
+    "Release succeeds iff current holder and token match; older token cannot alter a later lease.",
+    "Explicit monotonic clock expires at now >= deadline; ttl positive; exact arbitrary precision integers.",
+    "All transitions preserve Valid; initial empty state at time zero."
+  ]
+}
